@@ -99,7 +99,7 @@ class ProductController extends Controller
     {
         $images = str_slug($name) . time() . '.' . $photo->getClientOriginalExtension();
         
-        $path = public_path('/storage/image/products');
+        $path = public_path('/storage/image/product');
         
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true, true);
