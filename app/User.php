@@ -17,6 +17,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+  
     protected $fillable = [
         'fullname', 'email', 'password', 'address', 'phone', 'id_role',  
     ];
@@ -39,6 +41,38 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function role() 
+       
+        {
+            return $this->belongsToMany('App\Role'); 
+        }
+    
+    public function hasAnyRole($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function hasRole ($role)
+    {
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
+    
 
     public function linkedSocialAccounts()
     {

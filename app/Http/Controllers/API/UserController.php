@@ -125,7 +125,7 @@ class UserController extends Controller
         return response()->json([
           'success' => false,
           'message' => 'Unable to Logout'
-        ]);
+        ], 500);
       }
      }
 }
