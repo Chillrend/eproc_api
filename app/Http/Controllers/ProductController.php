@@ -99,7 +99,7 @@ class ProductController extends Controller
     {
         $images = str_slug($name) . time() . '.' . $photo->getClientOriginalExtension();
         
-        $path = public_path('uploads/product');
+        $path = public_path('/storage/image/product');
         
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true, true);
@@ -197,7 +197,7 @@ class ProductController extends Controller
         //mengecek, jika field photo tidak null / kosong
         if (!empty($products->image)) {
             //file akan dihapus dari folder uploads/produk
-            File::delete(public_path('uploads/product/' . $products->image));
+            File::delete(public_path('/storage/image/products/' . $products->image));
         }
         //hapus data dari table
         $products->delete();

@@ -94,7 +94,7 @@ class PromoController extends Controller
     {
         $images = str_slug($name) . time() . '.' . $photo->getClientOriginalExtension();
         
-        $path = public_path('uploads/promo');
+        $path = public_path('/storage/image/promo');
         
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true, true);
@@ -153,7 +153,7 @@ class PromoController extends Controller
             if ($request->hasFile('photo')) {
                 
                   
-                !empty($photo) ? File::delete(public_path('uploads/promo/' . $photo)):null;
+                !empty($photo) ? File::delete(public_path('/storage/image/promo/' . $photo)):null;
 
                 $photo = $this->saveFile($request->promo_title, $request->file('photo'));
             }
@@ -200,7 +200,7 @@ class PromoController extends Controller
         
         if (!empty($promos->image)) {
             
-            File::delete(public_path('uploads/promo/' . $promos->image));
+            File::delete(public_path('/storage/image/promo/' . $promos->image));
         }
 
         $promos->delete();
